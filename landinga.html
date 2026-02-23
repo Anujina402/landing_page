@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINY – Хувиа биш Хүнээ бодьё</title>
+  <!-- Font Awesome for minimal icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-red: #e53935;
+      --dark-red: #c62828;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --medium-gray: #e0e0e0;
+      --dark-gray: #222;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #fafafa;
+      color: var(--dark-gray);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ----- header (top) ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      background: var(--white);
+      border-bottom: 1px solid var(--medium-gray);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-red);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark-gray);
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-red);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--primary-red);
+      background: transparent;
+      color: var(--primary-red);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-red);
+      color: white;
+    }
+
+    /* ----- HERO section ----- */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 24px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1 1 350px;
+    }
+
+    .hero-text h1 {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 span {
+      color: var(--primary-red);
+      display: block;
+      font-size: 40px;
+      font-weight: 700;
+    }
+
+    .hero-description {
+      font-size: 16px;
+      color: #555;
+      max-width: 500px;
+      margin: 25px 0;
+    }
+
+    .btn-primary {
+      background: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(229, 57, 53, 0.3);
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--dark-red);
+      transform: translateY(-2px);
+    }
+
+    /* phone image – LOCAL FILE */
+    .hero-image {
+      flex: 0 0 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border-radius: 36px;
+      box-shadow: 0 25px 40px -10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+
+    .phone-img:hover {
+      transform: scale(1.02);
+    }
+
+    /* stats row */
+    .stats-row {
+      display: flex;
+      justify-content: space-around;
+      background: var(--white);
+      padding: 30px 20px;
+      margin: 20px 24px 40px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .stat-item {
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .stat-item h3 {
+      font-size: 32px;
+      color: var(--primary-red);
+    }
+
+    .stat-item p {
+      color: #666;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    /* middle section */
+    .section-light {
+      background: var(--white);
+      padding: 50px 24px;
+      margin: 30px 24px;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .section-light h2 {
+      font-size: 30px;
+      margin-bottom: 16px;
+      color: var(--dark-gray);
+    }
+
+    .section-light p {
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    .mini-feature {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .feature-card {
+      background: var(--light-gray);
+      border-radius: 24px;
+      padding: 20px 25px;
+      max-width: 240px;
+    }
+
+    .feature-card h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--white);
+      border-top: 1px solid var(--medium-gray);
+      padding: 40px 24px 20px;
+      margin-top: 50px;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto 30px;
+    }
+
+    .footer-col p {
+      color: #666;
+      font-size: 14px;
+      max-width: 240px;
+      margin-top: 10px;
+    }
+
+    .footer-logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-red);
+    }
+
+    .footer-col h4 {
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary-red);
+    }
+
+    .social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social a {
+      color: #777;
+      font-size: 18px;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid var(--medium-gray);
+      padding-top: 25px;
+      color: #999;
+      font-size: 13px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .hero-text h1 span { font-size: 34px; }
+      .nav-links { gap: 15px; }
+      .navbar { padding: 16px 20px; }
+      .phone-img { max-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP: header -->
+<header class="navbar">
+  <div class="logo">MINY</div>
+  <div class="nav-links">
+    <a href="#">Бидний тухай</a>
+    <a href="#">Онцлог</a>
+    <a href="#">Сэтгэгдэл</a>
+    <button class="btn-outline" id="downloadTopBtn">Апп татах</button>
+  </div>
+</header>
+
+<!-- HERO SECTION WITH LOCAL IMAGE -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>МИНИЙ<br><span>ОНЛАЙН ДЭЛГҮҮР</span></h1>
+    <div class="hero-description">
+      Бүх цахилгаан барааг — нэг дороос. Хувиа биш Хүнээ бодьё.
+    </div>
+    <button class="btn-primary" id="startHeroBtn">
+      <i class="fas fa-play-circle"></i> Эхлэх
+    </button>
+  </div>
+
+  <div class="hero-image">
+    <!-- LOCAL IMAGE FROM E: DRIVE -->
+    <img src="file:///E:/phone_image.png" 
+         alt="MINY апп" 
+         class="phone-img"
+         onerror="this.onerror=null; this.src='https://via.placeholder.com/280x570/e53935/white?text=MINY+App'; console.log('Local image not found, using placeholder');">
+  </div>
+</section>
+
+<!-- stats -->
+<div class="stats-row">
+  <div class="stat-item">
+    <h3>1,250+</h3>
+    <p>Бүтээгдэхүүн</p>
+  </div>
+  <div class="stat-item">
+    <h3>12,580+</h3>
+    <p>Хэрэглэгч</p>
+  </div>
+  <div class="stat-item">
+    <h3>4.8</h3>
+    <p>Үнэлгээ</p>
+  </div>
+</div>
+
+<!-- middle section -->
+<section class="section-light">
+  <h2>Хурдан хүргэлт, энгийн захиалга</h2>
+  <p>2 цагийн дотор таны хаалган дээр. Улаанбаатар хотын бүх дүүрэгт.</p>
+  
+  <div class="mini-feature">
+    <div class="feature-card">
+      <h4>🕒 2 цаг</h4>
+      <p>Хүргэлтийн баталгаат хугацаа</p>
+    </div>
+    <div class="feature-card">
+      <h4>📦 100+ төрөл</h4>
+      <p>Цахилгаан бараа бүгд</p>
+    </div>
+    <div class="feature-card">
+      <h4>❤️ 4.8 од</h4>
+      <p>Хэрэглэгчдийн сэтгэл ханамж</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">MINY</div>
+      <p>Хувиа биш Хүнээ бодьё. Таны хэрэгцээг энгийн болгоно.</p>
+      <div class="social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-weixin"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Холбоос</h4>
+      <ul>
+        <li><a href="#">Бидний тухай</a></li>
+        <li><a href="#">Онцлогууд</a></li>
+        <li><a href="#">Сэтгэгдэл</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Тусламж</h4>
+      <ul>
+        <li><a href="#">Хүргэлтийн бүс</a></li>
+        <li><a href="#">Төлбөр</a></li>
+        <li><a href="#">Буцаалт</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Холбоо барих</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +976 7010-1010</li>
+        <li><i class="fas fa-envelope"></i> info@miny.mn</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2026 MINY. Бүх эрх хуулиар хамгаалагдсан. | Хувиа биш Хүнээ бодьё</p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // Log image path for debugging
+    console.log('Attempting to load image from: file:///E:/phone_image.png');
+    
+    // top download button
+    document.getElementById('downloadTopBtn')?.addEventListener('click', () => {
+      alert('Апп татах цонх нээгдэнэ');
+    });
+
+    // hero start button
+    document.getElementById('startHeroBtn')?.addEventListener('click', () => {
+      alert('MINY апп хуудас руу шилжих');
+    });
+
+    // Check if image loaded
+    const img = document.querySelector('.phone-img');
+    img.addEventListener('load', () => console.log('Local image loaded successfully!'));
+    img.addEventListener('error', () => console.log('Local image failed to load - using placeholder'));
+  })();
+</script>
+
+</body>
+</html>
